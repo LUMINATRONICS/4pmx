@@ -111,4 +111,5 @@ USB 감시 로그: .../logs/usb_integrity.log<br/>
 # 4PMx-Device HW
 통증 진단기기는 주문제작한 팰티어와 PID제어를 사용하여 원하는 온도 도달<br/>
 동작 온도 : -5°C ~ 50°C <br/>
-<img width="659" height="797" alt="Image" src="https://github.com/user-attachments/assets/95aa91cf-6568-4305-b111-704b65a1dcb9" />
+<img width="323" height="363" alt="Image" src="https://github.com/user-attachments/assets/3e090014-e2cb-4b85-b62d-1e233c5af474" />
+
