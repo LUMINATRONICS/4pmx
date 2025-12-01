@@ -47,8 +47,7 @@ USB 통제 및 무결성 검사:<br/>
 | server.py |	메인 Flask 웹 서버. API 엔드포인트, 페이지 렌더링, 데이터 암복호화 및 무결성 검사 로직 포함|
 | web_socket.py | 실시간 통신을 위한 Socket.IO 서버|
 | usb_integrity_check.py | USB 연결을 감지하고, PC로 복사되는 파일의 확장자 및 무결성을 검사하는 백그라운드 스크립트|
-| bootsetup.sh | 최초 1회 실행. 시스템 서비스, 자동 실행, SSL 인증서 등 서버 운영에 필요한 모든 환경을 설정|
-| bootsetup_init.sh | 최초 1회 실행. 보안 기능(저장공간, ClamAV, USB 감시, 이더넷 차단)을 설정하고 서비스로 등록|
+| bootsetup.sh | 최초 1회 실행. 시스템 서비스, 자동 실행, SSL 인증서 등 서버 운영에 필요한 모든 환경을 설정, 보안 기능(저장공간, ClamAV, USB 감시, 이더넷 차단)을 설정하고 서비스로 등록|
 | run.sh | systemd 서비스에 의해 호출되는 실행 스크립트. 바이러스 검사 후 server.py와 web_socket.py 실행|
 | generate_checksums.py | 소스 코드 무결성 검사를 위한 checksums.json 파일을 생성. (코드 배포/수정 시 실행 필요)|
 | json/config.json | 서버 포트, SSL 인증서 경로 등 주요 설정값 저장|
@@ -112,5 +111,6 @@ USB 감시 로그: .../logs/usb_integrity.log<br/>
 통증 진단기기는 주문제작한 팰티어와 PID제어를 사용하여 원하는 온도 도달<br/>
 동작 온도 : -5°C ~ 50°C <br/>
 <img width="323" height="363" alt="Image" src="https://github.com/user-attachments/assets/3e090014-e2cb-4b85-b62d-1e233c5af474" />
+
 
 
