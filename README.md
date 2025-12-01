@@ -35,7 +35,7 @@ USB 통제 및 무결성 검사:<br/>
 웹 프레임워크: Flask (Python)<br/>
 실시간 통신: Flask-SocketIO, Eventlet<br/>
 데이터 처리: Pandas<br/>
-암호화: PyCryptodome (AES), Passlib (bcrypt)<br/>
+암호화: AES256, SHA256<br/>
 보안 검사: ClamAV (바이러스), hashlib (무결성)<br/>
 자동화 및 서비스: systemd, cron<br/>
 하드웨어 제어: Web Serial API (웹 브라우저)<br/>
@@ -112,4 +112,5 @@ USB 감시 로그: .../logs/usb_integrity.log<br/>
 통증 진단기기는 주문제작한 팰티어와 PID제어를 사용하여 원하는 온도 도달<br/>
 동작 온도 : -5°C ~ 50°C <br/>
 <img width="323" height="363" alt="Image" src="https://github.com/user-attachments/assets/3e090014-e2cb-4b85-b62d-1e233c5af474" />
+
 
