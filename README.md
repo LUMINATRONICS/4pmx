@@ -1,109 +1,239 @@
-# 4PMx-Device: 통증 다원 분석 및 보안 SW
+# PainMeterQ (4PMx) Project Analysis
 
-## 1. 프로젝트 개요
-4PMx-Device는 정량감각검사(QST), 시각통증지각검사(VPT), 언어적통증지각검사(LPT) 등 다각적인 통증 측정을 수행하고,<br/> 그 결과를 안전하게 관리 및 분석하는 로컬 서버(폐쇄망) 애플리케이션입니다.<br/>
-본 시스템은 환자 데이터의 무결성과 기밀성을 보장하기 위해 보안 기능을 내장하고 있으며,<br/> 특히 라즈베리파이와 같은 임베디드 장치에서의 안정적인 운영을 목표로 설계되었습니다.
-<br/>모든 데이터는 AES-256으로 암호화되어 저장되며, 서버 실행 전 소스 코드의 무결성 및 바이러스 검사를 통해 잠재적인 위협을 사전에 차단합니다.<br/>
+**시스템 분석 및 문서화 리포트**
 
-## 2. 주요 기능
-### 2.1. 통증 측정 및 관리
-다중 검사 프로토콜: QST, VPT(VAS), LPT(PDS) 및 설문(NPQ, PDQ, MPQ) 검사 수행.<br/>
-원격 제어 및 환자 모니터링: 의사용 제어 페이지(control.html)와 환자용 검사 페이지(index.html) 분리 운영.<br/>
-실시간 데이터 시각화: WebSocket을 통해 검사 중인 온도 데이터를 실시간 차트로 표시.<br/>
-환자 및 의사 관리: 관리자 계정을 통한 의사 계정 생성/관리 및 환자 정보 등록/관리 기능.<br/>
-### 2.2. 데이터 처리 및 분석
-자동 데이터 처리: 측정된 데이터를 DataFrame으로 변환 후 CSV 파일로 저장.<br/>
-결과 분석 및 시각화: 저장된 검사 데이터를 기반으로 종합 결과 페이지(result.html)에서 차트와 요약 테이블 제공.<br/>
-AI 기반 종합 소견: 측정 결과를 바탕으로 AI가 생성한 종합 소견 제공.<br/>
-### 2.3. 보안 강화 기능
-데이터 암호화: 모든 환자 정보(.json) 및 검사 결과(.csv)를 AES-256으로 암호화하여 저장.<br/>
-소스 코드 무결성 검증: 서버 시작 시, checksums.json을 기준으로 모든 소스 코드 파일의 변경 여부를 SHA-256 해시로 검증. 변경 시 서버 실행 차단.<br/>
-자동 바이러스 검사: 서버 시작 전, ClamAV를 이용해 프로젝트 폴더 전체의 바이러스 검사를 수행. 바이러스 탐지 시 감염 파일을 자동으로 격리하고 서버 실행을 차단.<br/>
-네트워크 포트 통제: 부팅 시 자동으로 이더넷 포트(eth0)를 비활성화하여 인가되지 않은 유선 네트워크 접근을 차단.<br/>
-주기적 시스템 감시:<br/>
--저장 공간 모니터링: 5분마다 디스크 사용량을 체크하여 임계치(90%) 초과 시 경고, 위험 수위(95%) 도달 시 서버를 안전하게 종료.<br/>
--주기적 바이러스 검사: 부팅 후 서버 실행 전, .../Documents 폴더 전체를 대상으로 바이러스 검사를 수행하고 로그를 기록.<br/>
-### 2.4. 시스템 관리 및 운영
-서비스 자동 실행: systemd 서비스를 통해 시스템 부팅 시 모든 서버 및 모니터링 스크립트가 자동으로 실행.<br/>
-세션 관리 및 잠금: 사용자 비활성 시간이 10분을 초과하면 자동으로 세션을 잠금 처리하여 재인증 요구, 추가로 10분이 지나면 자동 세션 해제<br/>
-데이터 백업 및 복원: 로그인 성공 시 자동으로 백업이 진행, 바이러스나 무결성 검사 실패시 자동 복원 진행.<br/>
+## 목차
+- [1. 요구사항 문서 (SRS)](#1-요구사항-문서-srs---요약)
+- [2. 주요 기능 및 검사 항목](#2-주요-기능-및-검사-항목)
+- [3. 아키텍처 다이어그램](#3-아키텍처-다이어그램)
+- [4. 코드베이스 구조](#4-코드베이스-구조)
+- [5. 데이터 흐름도 & 시퀀스 다이어그램](#5-데이터-흐름도--시퀀스-다이어그램)
+- [6. 설치 및 배포 환경 정보 & 가이드](#6-설치-및-배포-환경-정보--가이드)
 
-## 3. 시스템 아키텍처 및 구성 요소
-웹 프레임워크: Flask (Python)<br/>
-실시간 통신: Flask-SocketIO, Eventlet<br/>
-데이터 처리: Pandas<br/>
-암호화: AES256, SHA256<br/>
-보안 검사: ClamAV (바이러스), hashlib (무결성)<br/>
-자동화 및 서비스: systemd, cron<br/>
-하드웨어 제어: Web Serial API (웹 브라우저)<br/>
-파일 시스템 모니터링: Watchdog (Python)<br/>
-프론트엔드: HTML, CSS, JavaScript (Vanilla JS)<br/>
-### 주요 스크립트 및 파일<br/>
-| 파일/스크립트 | 역할 |
-| :-: | -- |
-| server.py |	메인 Flask 웹 서버. API 엔드포인트, 페이지 렌더링, 데이터 암복호화 및 무결성 검사 로직 포함|
-| web_socket.py | 실시간 통신을 위한 Socket.IO 서버|
-| usb_integrity_check.py | USB 연결을 감지하고, PC로 복사되는 파일의 확장자 및 무결성을 검사하는 백그라운드 스크립트|
-| bootsetup.sh | 최초 1회 실행. 시스템 서비스, 자동 실행, SSL 인증서 등 서버 운영에 필요한 모든 환경을 설정, 보안 기능(저장공간, ClamAV, USB 감시, 이더넷 차단)을 설정하고 서비스로 등록|
-| run.sh | systemd 서비스에 의해 호출되는 실행 스크립트. 바이러스 검사 후 server.py와 web_socket.py 실행|
-| generate_checksums.py | 소스 코드 무결성 검사를 위한 checksums.json 파일을 생성. (코드 배포/수정 시 실행 필요)|
-| json/config.json | 서버 포트, SSL 인증서 경로 등 주요 설정값 저장|
+---
 
-## 4. 설치 및 설정 가이드
-### 4.1. 사전 준비
-운영체제: Debian 기반 리눅스(라즈비안) <br/>
-사용자 계정: (예시)raspberry <br/>
-프로젝트 위치: .../4pmx/ver2 <br/>
-### 4.2. 설치 절차
-오프라인 배포를 위한 패키지 설치<br/>
+## 1. 요구사항 문서 (SRS) - 요약
+
+### 1.1. 개요
+본 시스템은 환자의 통증 감각을 정량적으로 측정(QST, VAS, PDS)하고 평가하는 의료 기기 소프트웨어 & 의료기기 입니다.<br/> 
+높은 수준의 보안(SSS, AES 암호화)과 안정성으로 환자 데이터의 무결성과 기밀성을 보장하기 위해 보안 기능을 내장하고 있으며, <br/> 
+정량감각검사(QST), 시각통증지각검사(VAS), 언어적통증지각검사(PDS) 등 다각적인 통증 측정을 수행하고,<br/> 
+그 결과를 안전하게 관리 및 분석하는 로컬 서버(폐쇄망) 애플리케이션입니다.<br/>
+
+### 1.2. 주요 사용자
+- **관리자 (Admin)**: 시스템 설정, 백업/복원, 로그 열람, 의사 계정 관리.
+- **의사 (Doctor)**: 환자 등록/검색, 검사 수행(QST/VAS/PDS), 결과 분석.
+- **환자 (Patient)**: 듀얼 스크린을 통해 문진표 작성 및 검사 지시에 따름.
+
+### 1.3. 보안 요구사항
+- **[Cryptography]**: 데이터 및 로그는 AES-256 (CBC)으로 암호화 저장. 키는 SSS(Shamir's Secret Sharing)로 분산 관리.
+- **[Integrity]**: 부팅 및 중요 시점마다 소스코드 및 파일 무결성 검증 (HMAC/SHA256).
+- **[Access Control]**: 단일 세션 강제 (중복 로그인 차단), 10분 무활동 시 자동 잠금, 비밀번호 복잡도 및 주기적 변경 강제.
+- **[Audit]**: 모든 중요 행위(로그인, 검사, 백업 등)는 암호화된 로그로 기록.
+
+------
+
+## 2. 주요 기능 및 검사 항목
+
+본 시스템은 단순한 설문을 넘어 하드웨어 제어를 포함한 복합적인 통증 평가 기능을 제공합니다.
+
+### 2.1. 정량적 감각 검사 (Quantitative Sensory Testing)
+의료진이 설정한 프로토콜에 따라 정밀한 열 자극을 가하여 환자의 감각 역치를 측정합니다.
+- **QST**:
+    - **Base Temp**: 기준 온도 설정 (예: 32°C).
+    - **Cool/Warm Threshold**: 냉/온감 감각을 느끼는 역치 측정.
+    - **Hot/Cold Pain**: 통증을 느끼는 한계 온도(Goal Temp) 측정.
+- **VAS/PDS**:
+    - **Cool/Warm**: 냉/온감 감각인 상황에 대한 통증 측정.
+    - **TGI (Thermal Grill Illusion)**: Odd/Even 소자에 서로 다른 온도를 인가하여 착각 통증(Illusion) 유발 검사.
+- **Protocol Control**:
+    - 온도 변화율(Rate), 유지 시간(Duration), 반복 횟수(Trial Count) 정밀 PID 제어.
+    - **Fast Mode**: 빠른 선별 검사를 위한 단축 프로토콜 지원.
+
+### 2.2. 통증 평가 설문 (Pain Assessments)
+다양한 국제 표준 통증 평가 도구를 디지털화하여 제공합니다.
+- **NPS (Neuropathic Pain Scale)**: 신경병증성 통증 척도.
+- **PDQ (Pain Detect Questionnaire)**: 통증 탐지 설문.
+- **MPQ (McGill Pain Questionnaire)**: 맥길 통증 설문.
+
+### 2.3. 데이터 관리 및 보안
+- **환자 관리**: 이름, 생년월일, 주민번호, 성별 등 인적사항 관리 및 검색.
+- **이력 조회**: 환자별 검사 이력(CSV) 타임라인 조회 및 결과 리포트 생성.
+- **데이터 암호화**: 모든 환자 정보 및 검사 결과는 AES-256 (CBC Mode)로 암호화되어 저장됨.
+- **백업/복원**: 시스템 데이터는 자동으로 백업 및 암호화, 바이러스 OR 무결성 검사 이상 발견시 자동 복원 기능.
+
+## 2.4 기능 명세서
+
+| 모듈 | 기능 | 설명 |
+| :--- | :--- | :--- |
+| **사용자 관리** | 로그인/로그아웃 | ID/PW 인증, 단일 세션 유지, 실패 시 계정 잠금. |
+| **사용자 관리** | 계정 관리 | 의사 계정 생성/수정/삭제 (관리자 전용), 비밀번호 변경. |
+| **사용자 관리** | 세션 보호 | 일정 시간(10분) 무활동 시 화면 잠금 (Lock Screen). |
+| **환자 관리** | 환자 등록 | 이름, 성별, 나이, 주민번호 등록. |
+| **환자 관리** | 환자 검색 | 다중 키워드 검색, 최근 검사일 기준 정렬. |
+| **환자 관리** | 기록 조회 | 과거 검사 이력(CSV) 리스트 및 선택 조회. |
+| **검사 (Test)** | 검사 제어 | 시리얼 통신을 통해 열 자극기 제어 (온도 설정, 시작/중지). |
+| **검사 (Test)** | 설문/평가 | QST, VAS, PDS, NPS, PDQ, MPQ 등 다양한 통증 평가 도구 제공. |
+| **시스템 관리** | 백업/복원 | 데이터 및 설정을 암호화된 Tarball로 백업 및 복원. |
+| **시스템 관리** | 로그 뷰어 | 암호화된 로그 파일을 복호화하여 웹 UI에서 열람. |
+| **시스템 관리** | 상태 모니터링 | 저장 공간 부족 경고, USB 무결성 감시, 바이러스 스캔(ClamAV). |
+
+---
+
+## 3. 아키텍처 다이어그램
+
+```mermaid
+graph TD
+    subgraph Client["Browser (Kiosk)"]
+        UI[HTML/JS Frontend]
+        ControlJS[control.js]
+        SerialJS[serial.js]
+        SocketJS[socket.js]
+    end
+
+    subgraph Server["Backend (Flask)"]
+        Router["server.py (Routes)"]
+        Auth["Auth Middleware"]
+        Crypto["AES Encryption"]
+        Log[Logger]
+        SocketServer["web_socket.py"]
+    end
+
+    subgraph Hardware
+        Device[Thermal Stimulator]
+        Storage["Filesystem (Encrypted)"]
+    end
+
+    UI --> ControlJS
+    ControlJS --> SocketJS
+    ControlJS --> SerialJS
+    SerialJS -- "Web Serial API (UART)" --> Device
+    SocketJS -- "Socket.IO (Port 2000)" --> SocketServer
+    UI -- "HTTPS (Port 443)" --> Router
+    Router --> Auth
+    Router --> Crypto
+    Router --> Log
+    Router --> Storage
+    Crypto -- "Key Reconstruction" --> SSS[SSS Shares]
 ```
-cd .../Documents
-prepare_offline_resources.sh
+- **Frontend**: Vanilla JS (ES6+), Web Serial API (Direct Hardware Access).
+- **Backend**: Python Flask, Flask-SocketIO (Real-time Sync).
+- **Communication**: 
+    - **Internal**: Socket.IO (화면 간 동기화).
+    - **External**: UART (115200/500000 bps) for Device Control.
+    
+**기술 스택:** Python (Flask), Javascript (Vanilla), Chromium (Kiosk), JSON/CSV Storage, Web Serial API, Socket.IO  
+
+## 3-1. 보안 아키텍처 (Security)
+
+의료 기기 특성상 강화된 보안 모델을 적용하였습니다.
+
+1.  **Shamir's Secret Sharing (SSS)**:
+    - 데이터 암호화에 사용되는 **마스터 키(AES Key)**를 단일 파일로 저장하지 않고, **N개의 조각(Shares)**으로 분할하여 저장.
+    - 서버 부팅 시 지정된 개수(K개) 이상의 조각이 있어야만 키를 복구하여 서비스를 시작할 수 있음.
+2.  **무결성 검증 (Integrity Check)**:
+    - `integrity.py`: 중요 소스코드 및 설정 파일의 **HMAC-SHA256** 해시를 주기적으로 검증.
+    - `checksums.json`: 승인된 파일의 해시값 명세서. 변조 감지 시 서버 가동 중단.
+3.  **Audit Logging**:
+    - 모든 사용자 행위(로그인, 검사 시작, 데이터 조회 등)는 암호화된 로그 파일(`server.log` 등)에 기록.
+    - 로그 파일 자체도 암호화되어 있어, 외부 유출 시 내용 확인 불가.
+4.  **Session Policy**:
+    - **Single Session Enforce**: 동일 ID 중복 로그인 시 기존 세션 강제 종료.
+    - **Lock Screen**: 10분간 입력이 없으면 화면 자동 잠금 (재비밀번호 입력 필요).
+
+---
+
+## 4. 코드베이스 구조
+
 ```
-프로젝트 클론 또는 복사, 소스 코드 체크섬 생성, 공개키 포함하여 압축:<br/>
-```c
-cd ...Documents
-development_package.sh
+/root (Project Dir)
+├── server.py              # 메인 백엔드 서버 (Flask)
+├── web_socket.py          # 실시간 통신 서버 (Socket.IO)
+├── run.sh                 # 서버 실행 스크립트 (환경변수 설정, 프로세스 시작)
+├── setup.sh               # 초기 설치 및 환경 설정 스크립트
+├── logger_config.py       # 로깅 설정 (암호화 로거 포함)
+├── integrity.py           # 무결성 검증 모듈
+├── sss_manager.py         # SSS 키 관리 및 복구
+├── static/                # 프론트엔드 리소스
+│   ├── control.js         # 검사 제어 로직 (의사 화면)
+│   ├── patient.js         # 환자 관리 로직
+│   ├── serial.js          # Web Serial 통신 담당
+│   ├── script.js          # 검사 시퀀스 및 커맨드 처리
+│   └── ...
+├── templates/             # HTML 템플릿 (Jinja2)
+├── json/                  # 데이터 저장소 (Config, User, Session 등)
+├── logs/                  # 암호화된 시스템 로그
+├── security/              # 보안 관련 파일 (SSS Shares 등)
+└── certs/                 # SSL 인증서 (자체 인증 기관, 자체 인증서)
 ```
-#### 설치PC 또는 업데이트 대상PC
-bootsetup.sh는 서버 운영에 필요한 모든 환경(시스템 패키지, Python 가상환경, SSL 인증서, 자동 실행 서비스, 저장 공간 모니터링, USB 감시, ClamAV, 이더넷 차단 등 추가적인 보안 및 운영 기능을 시스템에 등록)을 설정합니다.<br/>
-스크립트에 실행 권한을 부여하고 실행합니다. sudo 없이 실행해야 합니다.<br/>
-```c
-chmod +x bootsetup_offline.sh
-./bootsetup_offline.sh
+
+---
+
+## 5. 데이터 흐름도 & 시퀀스 다이어그램
+
+```mermaid
+sequenceDiagram
+    participant Doc as Doctor (control.js)
+    participant Socket as SocketWorker
+    participant Script as script.js
+    participant Serial as serial.js
+    participant Device as Thermal Device
+    participant Srv as Server (Flask)
+
+    Doc->>Socket: Request "startTest"
+    Socket->>Srv: Validate Request (Session/Params)
+    Srv-->>Socket: "startTest" Approved (w/ Config)
+    Socket->>Script: Trigger "startTest" Logic
+    Script->>Serial: Send Config Commands (Sequential)
+    Serial->>Device: UART Command (s32_base, etc.)
+    Device-->>Serial: Confirm / Data Stream
+    Serial->>Socket: Real-time Temp Data
+    Socket->>Doc: Update Chart (Live)
 ```
-시스템 재부팅:
-모든 설정과 서비스가 시스템에 완전히 적용되도록 재부팅을 권장합니다.
-```c
-sudo reboot
+
+---
+
+## 6. 설치 및 배포 환경 정보 & 가이드
+
+본 시스템은 Ubuntu/Debian 기반 리눅스 환경(Raspberry Pi OS 권장)에 최적화되어 있습니다.
+
+- **OS**: Linux (Debian/Raspbian based) - `/home/berry` 사용자 환경.
+- **Network**: 보안을 위해 Ethernet 및 Wireless 인터페이스 비활성화 (`disable-network.service`).
+- **Execution**:
+    - `4pmxDevice.service`: 메인 웹 서버 및 로직.
+- **Browser**: Chromium (Kiosk Mode, Web Serial 허용, `--password-store=basic`).
+- **Port Binding**: `authbind`를 사용하여 일반 권한으로 443(HTTPS) 포트 바인딩.
+- **Antivirus**: ClamAV Daemon 상시 실행 및 부팅 시 전체 스캔.
+
+### 6.1. 전제 조건
+- **Dependencies**: `python3-venv`, `openssl`, `clamav`, `chromium-browser`, `authbind`.
+- **Hardware**: USB Serial 장치 연결 필요.
+
+### 6.2. 설치 스크립트 (`setup.sh`)
+```bash
+# 1. 저장소 클론 및 디렉토리 이동
+git clone [repository_url]
+cd 4pmx/ver2
+
+# 2. 설치 스크립트 실행 (일반 사용자로 실행)
+./setup.sh
 ```
-## 5. 사용 방법
-접속: 웹 브라우저를 열고 https://localhost/login 또는 https://<라즈베리파이_IP> 주소로 접속합니다.<br/>
-로그인: 초기 관리자 계정은 admin 입니다. 로그인 후 관리자 아이디 생성을 권장합니다.<br/>
-의사 관리: 관리자 계정으로 로그인 후, 환자 목록 페이지의 사용자 관리 버튼을 통해 의사 계정을 수정/추가/삭제/비밀번호 변경할 수 있습니다.<br/>
-환자 등록 및 검사 시작:<br/>
--초기 실행 시) 환자 목록 페이지에서 환자 등록 버튼을 클릭하여 환자 정보를 입력합니다.<br/>
--등록된 환자 목록에서 검사를 진행할 환자의 선택 버튼을 클릭합니다.<br/>
--팝업으로 열리는 제어 창(control.html)에서 검사 설정을 조정한 후 검사 시작을 누릅니다. 환자용 화면(index.html)에서 검사가 진행됩니다.<br/>
+* **동작 내용**:
+    * Python 가상환경(`venv`) 생성 및 라이브러리 설치.
+    * SSL 인증서(Self-signed) 생성 및 시스템 신뢰 저장소(`ca-certificates`) 등록.
+    * SSS 초기 키 조각 생성.
+    * Systemd 서비스(`4pmxDevice.service`, `usb_monitor.service`) 등록.
 
-## 6. 로그 및 데이터 위치
-#### 메인 로그: .../logs/<날짜시간>/
-USB 감시 로그: .../logs/usb_integrity.log<br/>
-저장 공간 경고 로그: .../storage_alert.log<br/>
-#### 바이러스 검사 로그:
-서버 시작 시: .../logs/clamav_startup_scan.log<br/>
-주기적 검사: .../logs/clamav_daily_scan.log<br/>
-바이러스 격리 폴더: .../logs/quarantine/<br/>
-#### 암호화된 데이터:
-검사 결과: .../csv/<br/>
-환자/의사 정보: .../json/<br/>
-백업 파일: .../backup/ 
+### 6.3. 실행 (`run.sh`)
+```bash
+# 수동 실행
+./run.sh
 
-# 4PMx-Device HW
-통증 진단기기는 주문제작한 팰티어와 PID제어를 사용하여 원하는 온도 도달<br/>
-동작 온도 : -5°C ~ 50°C <br/>
-<img width="323" height="363" alt="Image" src="https://github.com/user-attachments/assets/3e090014-e2cb-4b85-b62d-1e233c5af474" />
+# 서비스 실행 (배포 후)
+sudo systemctl start 4pmxDevice.service
+```
+* 서버 실행 시 자동으로 **바이러스 스캔(ClamAV)** 과 **파일 무결성 검사**를 수행합니다.
 
+---
 
-
-
+<img src="https://github.com/user-attachments/assets/ee6ec305-ca9a-4b69-9071-382de7400d62" alt="Image" />
