@@ -206,7 +206,7 @@ sequenceDiagram
 - **Antivirus**: ClamAV Daemon 상시 실행 및 부팅 시 전체 스캔.
 
 ### 6.1. 전제 조건
-- **Dependencies**: `python3-venv`, `openssl`, `clamav`, `chromium-browser`, `authbind`.
+- **Dependencies**: `python3-venv`, `openssl`, `clamav`, `chromium`, `authbind`.
 - **Hardware**: USB Serial 장치 연결 필요.
 
 ### 6.2. 설치 스크립트 (`setup.sh`)
@@ -242,5 +242,6 @@ FRONT/BACKEND/SECURITY : LUMINATRONICS
 팰티어 제어 : LUMINATRONICS  
 내부 회로 및 PCB 설계 & HW스펙 결정 : 연구소장님 
 <img src="https://github.com/user-attachments/assets/ee6ec305-ca9a-4b69-9071-382de7400d62" alt="Image" />
+
 
 
