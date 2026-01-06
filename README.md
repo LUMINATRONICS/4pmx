@@ -240,6 +240,7 @@ sudo systemctl start 4pmxDevice.service
 시제품 디자인 협업 : 인디고  
 FRONT/BACKEND/SECURITY : LUMINATRONICS  
 팰티어 제어 : LUMINATRONICS  
-내부 회로 설계 & HW스펙 결정 : 연구소장님 
+내부 회로 및 PCB 설계 & HW스펙 결정 : 연구소장님 
 <img src="https://github.com/user-attachments/assets/ee6ec305-ca9a-4b69-9071-382de7400d62" alt="Image" />
+
 
