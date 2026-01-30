@@ -1,0 +1,929 @@
+@charset "utf-8";
+
+/* reset */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+textarea,
+p,
+blockquote,
+th,
+td,
+input,
+select,
+textarea,
+button {
+    margin: 0;
+    padding: 0
+}
+
+fieldset,
+img {
+    border: 0 none
+}
+
+dl,
+ul,
+ol,
+menu,
+li {
+    list-style: none
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none
+}
+
+input,
+select,
+textarea,
+button {
+    vertical-align: middle;
+    font-size: 100%
+}
+
+button {
+    border: 0 none;
+    background-color: transparent;
+    cursor: pointer
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+body {
+    background: #fff;
+    -webkit-text-size-adjust: none
+}
+
+input[type='text'],
+input[type='password'],
+input[type='submit'],
+input[type='search'],
+input[type='tel'],
+input[type='email'],
+html input[type='button'],
+input[type='reset'] {
+    -webkit-appearance: none;
+    border-radius: 0
+}
+
+input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none
+}
+
+body {
+    background: #fff;
+    padding: 0 15%;
+    box-sizing: border-box;
+}
+
+body,
+th,
+td,
+input,
+select,
+textarea,
+button {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
+    color: #333
+}
+
+/* index 화면 전용 스타일 */
+#index_body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    /* 스크롤 방지 */
+    height: 100vh;
+    width: 100vw;
+}
+
+#title,
+#ci-logo {
+    background-color: transparent !important;
+}
+
+#index_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 화면 전체를 덮도록 고정하여 완벽한 중앙 정렬 보장 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 10;
+    background: #fff;
+    /* 배경색 확보 */
+}
+
+.control_wrap_top {
+    padding: 30px 0px 0px;
+}
+
+.control_wrap_top #title {
+    font-size: 22px;
+    letter-spacing: -2px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.control_wrap_top .formRow1_wrap {
+    background: #fdfaff;
+    border: 1px #742e9f solid;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
+}
+
+.control_wrap_top .col_box {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.control_wrap_top .col_box .col {
+    grid-column: span 3;
+    border-radius: 10px;
+}
+
+.control_wrap_top .col_box .col .col_label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.control_wrap_top .col_box .col .col_label label {
+    color: #5b2181;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.control_wrap_top .col_box .col input[type="text"],
+.control_wrap_top .col_box .col input[type="number"],
+.control_wrap_top .col_box .col input[type="date"] {
+    height: 40px;
+    line-height: 40px;
+    border: 1px #742e9f solid;
+    ;
+    background: #fff;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #000;
+}
+
+.control_wrap_top .col_box .col select {
+    height: 40px;
+    line-height: 40px;
+    border: 1px #742e9f solid;
+    ;
+    background: #fff;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #000;
+}
+
+.control_wrap_top .col_box .col select option {
+    background: #5b2181;
+}
+
+/* gender-options 라디오 버튼 스타일 */
+.control_wrap_top .col_box .col .gender-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    border: 1px #742e9f solid;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.control_wrap_top .col_box .col .gender-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    color: #333;
+    cursor: not-allowed;
+    font-weight: normal;
+}
+
+.control_wrap_top .col_box .col .gender-options input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: not-allowed;
+}
+
+
+.Baud_Rate_wrap {
+    margin-top: 20px;
+    background: #f5f7fd;
+    border: 1px #ddd solid;
+    border-radius: 10px;
+    padding: 10px 10px;
+    ;
+    font-size: 16px;
+}
+
+.Baud_Rate_wrap label {
+    color: #5b2181;
+    letter-spacing: -1px;
+}
+
+.Baud_Rate_wrap select {
+    border-radius: 5px;
+    border: 1px #ddd solid;
+    border-radius: 5px;
+    line-height: 35px;
+    height: 35px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.Baud_Rate_wrap #openclose_port {
+    background: #0c5e92;
+    color: #fff;
+    padding: 0 20px;
+    line-height: 35px;
+    border-radius: 5px;
+    border: 0px;
+    margin-left: 10px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.Baud_Rate_wrap #port_info {
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.custom_delay_wrap {
+    margin-top: 10px;
+    background: #f5fdfa;
+    border: 1px #ddd solid;
+    border-radius: 10px;
+    padding: 10px 10px;
+    ;
+    font-size: 16px;
+    color: #0c9264;
+}
+
+.custom_delay_wrap input[type="number"] {
+    border-radius: 5px;
+    border: 1px #ddd solid;
+    color: #000;
+    border-radius: 5px;
+    padding: 0 15px;
+    line-height: 35px;
+    height: 35px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+/*박스4*/
+.main_panel_warp {
+    margin-top: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 20px;
+}
+
+.main_panel_warp .panel {
+    flex: 0 0 45%;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: #fff;
+    min-height: 300px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+.main_panel_warp .panel h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.main_panel_warp .hidden_panel_cont {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+.main_panel_warp .hidden_panel_cont .fonti {
+    font-size: 27px;
+    color: #ddd
+}
+
+.main_panel_warp .panel input[type="text"],
+.main_panel_warp .panel input[type="number"],
+.main_panel_warp .panel input[type="date"],
+.main_panel_warp .panel select {
+    border: 1px #ddd solid;
+    line-height: 32px;
+    height: 32px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0 10px;
+}
+
+.main_panel_warp .panel .panel_list01 {
+    margin-bottom: 10px;
+}
+
+.main_panel_warp .panel .panel_list01 span.s_title {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.main_panel_warp .panel .panel_list02 {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px #ededed solid;
+}
+
+.main_panel_warp .panel .panel_list02 span {
+    display: inline-block;
+}
+
+.main_panel_warp .panel .panel_list02 span.s_title {
+    font-size: 16px;
+    color: #444;
+    margin-right: 5px;
+}
+
+.main_panel_warp .panel .switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 22px
+}
+
+.main_panel_warp .panel .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0
+}
+
+.main_panel_warp .panel .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #ddd;
+    border-radius: 999px;
+    transition: .2s;
+}
+
+.main_panel_warp .panel .slider:before {
+    content: "";
+    position: absolute;
+    height: 17px;
+    width: 17px;
+    left: 3px;
+    top: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: .2s;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .06), 0 1px 4px rgba(0, 0, 0, .08)
+}
+
+.main_panel_warp .panel .switch input:checked+.slider {
+    background: linear-gradient(90deg, #742e9f, #742e9f);
+}
+
+.main_panel_warp .panel .switch input:checked+.slider:before {
+    transform: translateX(20px)
+}
+
+.main_panel_warp .panel .panel_list03 {
+    margin-bottom: 7px;
+    background: #f8f8f8;
+    border: 1px #ededed solid;
+    padding: 4px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.main_panel_warp .panel .panel_list03 span {
+    display: inline-block;
+}
+
+.main_panel_warp .panel .panel_list03 span.s_title {
+    font-size: 16px;
+    color: #444;
+    margin-right: 5px;
+}
+
+.main_panel_warp .panel .panel_list03 input[type="number"] {
+    width: 35px;
+}
+
+.main_panel_warp .panel.on_panel .hidden_panel_wrap_box {
+    display: none;
+}
+
+.main_panel_warp .panel.on_panel .hidden_panel_cont .fonti {
+    color: #742e9f;
+}
+
+.main_panel_warp .panel.on_panel .panel_list01,
+.main_panel_warp .panel.on_panel .panel_list02 {
+    text-align: center;
+    ;
+    font-size: 20px;
+    vertical-align: middle
+}
+
+.main_panel_warp .panel.on_panel .panel_list01 span.s_title {
+    font-size: 30px;
+    color: #000;
+    line-height: 45px;
+    font-weight: bold;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.main_panel_warp .panel.on_panel .panel_list02 span.s_title {
+    font-size: 20px;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+.main_panel_warp .panel.on_panel input[type="text"],
+.main_panel_warp .panel.on_panel input[type="number"],
+.main_panel_warp .panel.on_panel input[type="date"],
+.main_panel_warp .panel.on_panel select {
+    line-height: 45px;
+    height: 45px;
+    vertical-align: middle;
+}
+
+.main_panel_warp .panel.on_panel .switch {
+    width: 50px;
+    height: 28px
+}
+
+.main_panel_warp .panel.on_panel .slider:before {
+    height: 22px;
+    width: 25px;
+}
+
+#mainContainer .panel:nth-child(4n+1) #buttonBox button {
+    display: block;
+    width: 100%;
+    background: #f8f8f8;
+    font-weight: bold;
+    border: 0px;
+    border: 1px #742e9f solid;
+    font-size: 24px;
+    letter-spacing: -1px;
+    padding: 25px 0px;
+    border-radius: 10px;
+    margin: 5px 0px;
+    color: #742e9f;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+#mainContainer .panel:nth-child(4n+1) #buttonBox button:hover {
+    background: #742e9f;
+    color: #fff;
+}
+
+#mainContainer .panel:nth-child(4n+1) #buttonBox button .lord-icon {
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+}
+
+#mainContainer .panel:nth-child(4n+1) #buttonBox button span {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px #742e9f solid;
+    border-radius: 40px;
+    background: #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#mainContainer .panel #formRow2 div {
+    display: block;
+    font-size: 15px;
+    border-bottom: 1px #ededed solid;
+    padding-bottom: 10px;
+    margin-bottom: 10px
+}
+
+#mainContainer .panel #formRow2 div h4 {
+    font-weight: normal;
+    font-size: 16px;
+    color: #666;
+    letter-spacing: -1px;
+}
+
+#mainContainer .panel #formRow2 div select {
+    border: 1px #ddd solid;
+    line-height: 35px;
+    height: 35px;
+    border-radius: 5px;
+    min-width: 60px;
+    margin-left: 5px;
+}
+
+#startTestContainer {
+    position: sticky;
+    bottom: 20px;
+    z-index: 10;
+    margin-top: 10px;
+    text-align: center;
+    padding-bottom: 2px;
+}
+
+#startTestContainer .startTestContainer_box {
+    padding: 30px 0px;
+    border: 1px #742e9f solid;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#startTestContainer .startTestContainer_list {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#startTestContainer .startTestContainer_list input[type="text"],
+#startTestContainer .startTestContainer_list input[type="number"],
+#startTestContainer .startTestContainer_list input[type="date"],
+#startTestContainer .startTestContainer_list button,
+#startTestContainer .startTestContainer_list select {
+    border: 1px #742e9f solid;
+    line-height: 45px;
+    height: 45px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0 15px;
+    color: #742e9f;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+#startTestContainer .startTestContainer_list #startTest {
+    background: #742e9f;
+    color: #fff;
+}
+
+#startTestContainer .startTestContainer_list #logoutBtn {
+    background: #333333;
+    color: #fff;
+}
+
+#index_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    position: relative;
+    z-index: 0;
+}
+
+#index_wrap #status_message {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    text-align: center;
+    line-height: 70px;
+    background: linear-gradient(90deg, #742e9f, #13c148, #742e9f);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 4s linear infinite;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
+
+    100% {
+        background-position: 0% center;
+    }
+}
+
+@media all and (max-width:1024px) {
+    .control_wrap_top {
+        padding: 30px 10px 0px;
+    }
+
+    .control_wrap_top .col_box {
+        display: block;
+        gap: 0px
+    }
+
+    .control_wrap_top .col_box .col {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .control_wrap_top .col_box .col .col_label {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .control_wrap_top .col_box .col .col_label label {
+        font-size: 15px;
+    }
+
+    .control_wrap_top .col_box .col input[type="text"],
+    .control_wrap_top .col_box .col input[type="number"],
+    .control_wrap_top .col_box .col input[type="date"] {
+        height: 45px;
+        line-height: 45px;
+    }
+
+    .control_wrap_top .col_box .col select {
+        height: 45px;
+        line-height: 45px;
+    }
+
+    .Baud_Rate_wrap {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .custom_delay_wrap {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    /*박스4*/
+    .main_panel_warp {
+        margin-top: 30px;
+        display: block;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .main_panel_warp .panel {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    #startTestContainer .startTestContainer_box {
+        padding: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #startTestContainer .startTestContainer_list_full {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #startTestContainer .startTestContainer_list_full {
+        display: block;
+        width: auto;
+    }
+
+    #startTestContainer .startTestContainer_list_full select {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    #index_wrap #status_message {
+        font-size: 40px;
+        line-height: 50px;
+    }
+}
+
+@media all and (min-width:1025px) and (max-width:1440px) {}
+
+/* 모달 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+}
+
+.modal p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal button {
+    padding: 12px 30px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+#modal_button_yes {
+    background-color: #742e9f;
+    color: white;
+}
+
+#modal_button_yes:hover {
+    background-color: #5b2181;
+}
+
+#modal_button_no {
+    background-color: #eee;
+    color: #333;
+}
+
+#modal_button_no:hover {
+    background-color: #ddd;
+}
+
+/* 중앙 박스 정렬 (Flexbox) */
+#centerBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 검사 시작 버튼 스타일 */
+#startTest-Button {
+    padding: 15px 40px;
+    font-size: 22px;
+    background-color: #742e9f;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(116, 46, 159, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: bold;
+}
+
+#startTest-Button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(116, 46, 159, 0.4);
+}
+
+#startTest-Button:active {
+    transform: translateY(0);
+}
+
+/* 그래프 및 온도 표시 스타일 */
+#chartContainer {
+    width: 95%;
+    aspect-ratio: 1400 / 400;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+#realTimeChart {
+    max-width: none;
+}
+
+#temperatureValues {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.tempRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tempValue {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+#averageRow {
+    justify-content: center;
+    text-align: center;
+}
+
+/* 전체화면 SVG 스타일 */
+#fullscreenSVG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+#fullscreenSVG.active {
+    display: flex;
+}
+
+#fullscreenSVG svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* SVG가 화면에 맞게 조정됨 */
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,65 @@
+body{
+    user-select: none;
+        /* 표준 속성 */
+        -webkit-user-select: none;
+        /* Safari, Chrome */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+* {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -ms-user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-drag: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+.highlight {
+    background-color: rgb(229, 229, 229);
+}
+
+th {
+    background-color: #c0c0c0;
+}
+
+#dangers {
+    color: rgb(255, 0, 0);
+}
+
+#warnings {
+    color: rgb(255, 149, 0);
+}
+
+#clickeds {
+    color: rgb(0, 177, 6);
+}
+
+.check {
+    font-weight: bold;
+}
+
+.check ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.check li {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-right: 10px;
+}

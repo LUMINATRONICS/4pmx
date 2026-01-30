@@ -1,0 +1,300 @@
+:root {
+    --primary: #4A235A;
+    /* 로고 색상 기반 */
+    --primary-light: #F3E5F5;
+    --bg-color: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --text-main: #333333;
+    --text-sub: #666666;
+    --border: #E0E0E0;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding-bottom: 80px;
+}
+
+/* 1. 상단 헤더 (네비게이션) */
+header {
+    background: var(--card-bg);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    background: #f0f0f0;
+}
+
+.header-title {
+    flex: 2;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logo img {
+    height: 30px;
+    vertical-align: middle;
+}
+
+/* 2. 환자 정보 및 설정 바 */
+.info-bar {
+    background: var(--card-bg);
+    padding: 15px 20px;
+    margin-top: 1px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.patient-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-label {
+    color: var(--text-sub);
+    font-size: 0.85rem;
+}
+
+.info-value {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.divider {
+    width: 1px;
+    height: 12px;
+    background: var(--border);
+}
+
+/* 3. 메인 설문 영역 */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.question-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+/* 활성화된 카드 강조 */
+.question-card:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 8px 30px rgba(74, 35, 90, 0.08);
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary);
+    line-height: 1.4;
+}
+
+.scale-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    padding: 0 5px;
+}
+
+.scale-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+/* 점수 버튼 디자인 (원형) */
+.score-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: white;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.score-btn.selected {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(74, 35, 90, 0.3);
+    transform: scale(1.1);
+}
+
+/* Rectangular Button Styles (for Q17) */
+.score-btn-rect {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: white;
+    font-size: 1rem;
+    color: var(--text-sub);
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: left;
+    transition: all 0.2s;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.score-btn-rect:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.score-btn-rect.selected {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* 4. 하단 버튼 */
+.submit-area {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(74, 35, 90, 0.2);
+    transition: transform 0.2s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 35, 90, 0.3);
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .scale-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .info-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Range Slider (Q16) */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    margin-top: -10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 2px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}

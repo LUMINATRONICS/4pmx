@@ -1,0 +1,120 @@
+body {
+    background-color: #f6f7fb;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 
+   Mapping new design to existing HTML structure:
+   #lockscreen_wrap -> .lock-wrapper
+   .unlock_wrap -> .lock-container
+   .common_title -> .lock-container h1
+*/
+
+.lock-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    position: relative;
+    z-index: 0;
+}
+
+.lock-container {
+    margin: 0 auto;
+    width: 350px;
+    background: transparent;
+    /* 기존에는 white였으나 새 디자인은 배경색 없음(또는 body 배경과 어우러짐) */
+    /* 만약 카드 형태를 유지하고 싶다면 background: #fff; padding: ... 추가 필요. 
+       하지만 사용자 요청은 "디자인만 업데이트"이므로 제공된 CSS의 룩앤필(투명/심플)을 따릅니다. */
+}
+
+.lock-container h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    /* h2 size approximation */
+    margin-bottom: 20px;
+
+    /* Gradient Text Style */
+    background: linear-gradient(90deg, #742e9f, #3548bd, #13c148);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 4s linear infinite;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
+
+    100% {
+        background-position: 0% center;
+    }
+}
+
+/* Input Styles */
+.lock-container input[type="password"] {
+    border: 0px;
+    background: #fff;
+    line-height: 50px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 0 10px;
+    color: #742e9f;
+    vertical-align: middle;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    /* Spacing between input and button */
+}
+
+/* Button Styles */
+.lock-container button {
+    border: 0px;
+    background: #742e9f;
+    text-align: center;
+    line-height: 65px;
+    height: 65px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    vertical-align: middle;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.lock-container button:hover {
+    background-color: #5b237e;
+}
+
+/* Error Message Styles */
+.lock-container .error-message {
+    color: #e63946;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    min-height: 1.2em;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    text-align: center;
+}
+
+.lock-container .error-message.visible {
+    opacity: 1;
+}
+
+/* Responsive */
+@media all and (max-width:1024px) {
+    /* Add responsive styles if needed */
+}
