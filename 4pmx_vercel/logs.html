@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시스템 로그 뷰어</title>
+    <link rel="stylesheet" href="static/style/all.min.css">
+    <link rel="stylesheet" href="static/style/fonts.css">
+    <link rel="stylesheet" href="static/style/logs.css">
+    <link rel="stylesheet" href="static/style/quick_menu.css">
+    <script type="module" src="static/pagelock.js"></script>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="location.href='patient.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <span class="header-title">시스템 로그 뷰어</span>
+        </div>
+        <div class="header-right">
+            <button id="logoutBtn" class="btn btn-danger" onclick="location.href='index.html'">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> 로그아웃
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ... -->
+        <div class="card log-container">
+            <!-- ... -->
+            <!-- Mocking static content for demo -->
+            <div class="panel sessions-panel">
+                <div class="panel-header">
+                    <h2><i class="far fa-calendar-alt"></i> 로그 세션</h2>
+                </div>
+                <div id="sessions-list" class="list-container">
+                    <!-- Static Demo Item -->
+                    <button class="list-item" onclick="alert('Demo: Select session')">Session 1 (Current)</button>
+                    <button class="list-item" onclick="alert('Demo: Select session')">Session 2</button>
+                </div>
+            </div>
+            <!-- ... -->
+        </div>
+    </main>
+
+    <script src="static/logs.js"></script>
+
+    <!-- Quick Menu -->
+    <div id="quick-menu-container">
+        <div id="quick-menu">
+            <a href="index.html"><span>🏠</span><span>Main</span></a>
+            <a href="login.html"><span>🔑</span><span>Login</span></a>
+            <a href="patient.html"><span>👤</span><span>Patient</span></a>
+            <a href="control.html"><span>🎮</span><span>Control</span></a>
+            <a href="result.html"><span>📈</span><span>Result</span></a>
+            <a href="logs.html"><span>📋</span><span>Logs</span></a>
+        </div>
+    </div>
+</body>
+
+</html>

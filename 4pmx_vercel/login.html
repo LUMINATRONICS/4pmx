@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>4PMx로그인</title>
+    <link rel="stylesheet" href="static/scriptJs/aos.css">
+    <link rel="stylesheet" href="static/scriptJs/XEIcon-master/xeicon.min.css">
+    <link rel="stylesheet" href="static/style/login.css">
+    <link rel="stylesheet" href="static/css/fonts.css">
+    <link rel="stylesheet" href="static/style/quick_menu.css">
+    <script src="static/scriptJs/aos.js"></script>
+    <!-- Mock login script is not needed for UI demo, but keeping the link for now -->
+    <script src="static/login.js"></script>
+</head>
+
+<body>
+
+    <div class="default_layout">
+        <div id="login_wrap">
+            <div class="login_box">
+                <!-- AOS 애니메이션 속성 추가 -->
+                <h1 data-aos="fade-down" data-aos-once="true">
+                    <img src="static/resources/CI.png" alt="CI Logo" />
+                </h1>
+
+                <!-- Changed to allow submission for demo purpose -->
+                <form class="section-content" onsubmit="window.location.href='patient.html'; return false;">
+                    <div class="text_box">
+                        <!-- ... -->
+                        <div class="list" data-aos="fade-right" data-aos-once="true">
+                            <div class="s_title"><i class="xi-user-o xi-x"></i> 아이디</div>
+                            <div class="s_text"><input type="text" id="adminId" maxlength="24" placeholder="아이디를 입력하세요"
+                                    autocomplete="username"></div>
+                        </div>
+                        <!-- ... -->
+                        <div class="list" data-aos="fade-left" data-aos-once="true">
+                            <div class="s_title"><i class="xi-lock-o xi-x"></i> 비밀번호</div>
+                            <div class="s_text"><input type="password" id="adminPw" maxlength="24"
+                                    placeholder="비밀번호를 입력하세요" autocomplete="current-password"></div>
+                        </div>
+                    </div>
+
+                    <!-- ... -->
+                    <div class="btns" data-aos="fade-up" data-aos-once="true">
+                        <button type="submit">로그인</button>
+                    </div>
+                    <div id="loginResult" data-aos="fade-up" data-aos-once="true"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS 애니메이션 초기화 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init();
+        });
+    </script>
+    <div
+        style="position: fixed; bottom: 70px; left: 0; width: 100%; text-align: center; color: #888; font-size: 13px; pointer-events: none;">
+        Pain Meter Q v1.0.0
+    </div>
+
+    <!-- Quick Menu -->
+    <div id="quick-menu-container">
+        <div id="quick-menu">
+            <a href="index.html"><span>🏠</span><span>Main</span></a>
+            <a href="login.html"><span>🔑</span><span>Login</span></a>
+            <a href="patient.html"><span>👤</span><span>Patient</span></a>
+            <a href="control.html"><span>🎮</span><span>Control</span></a>
+            <a href="result.html"><span>📈</span><span>Result</span></a>
+            <a href="logs.html"><span>📋</span><span>Logs</span></a>
+        </div>
+    </div>
+</body>
+
+</html>
