@@ -41,12 +41,12 @@ https://4pmx-vercel.vercel.app/login.html
 ### 2.1. 정량적 감각 검사 (Quantitative Sensory Testing)
 의료진이 설정한 프로토콜에 따라 정밀한 열 자극을 가하여 환자의 감각 역치를 측정합니다.
 - **QST**:
-    - **Base Temp**: 기준 온도 설정 (예: 32°C).
+    - **Base Temp**: 기준 온도 설정 (기준온도: 32°C).
     - **Cool/Warm Threshold**: 냉/온감 감각을 느끼는 역치 측정.
     - **Hot/Cold Pain**: 통증을 느끼는 한계 온도(Goal Temp) 측정.
 - **VAS/PDS**:
-    - **Cool/Warm**: 냉/온감 감각인 상황에 대한 통증 측정.
-    - **TGI (Thermal Grill Illusion)**: Odd/Even 소자에 서로 다른 온도를 인가하여 착각 통증(Illusion) 유발 검사.
+    - **Cool/Warm**: 냉/온감 감각을 느끼는 수치와 단어에 대한 통증 측정.
+    - **TGI (Thermal Grill Illusion)**: 팰티어 소자에 서로 다른 온도를 인가하여 착각 통증(Illusion) 유발 검사.
 - **Protocol Control**:
     - 온도 변화율(Rate), 유지 시간(Duration), 반복 횟수(Trial Count) 정밀 PID 제어.
     - **Fast Mode**: 빠른 선별 검사를 위한 단축 프로토콜 지원.
@@ -73,9 +73,9 @@ https://4pmx-vercel.vercel.app/login.html
 | **환자 관리** | 환자 등록 | 이름, 성별, 나이, 주민번호 등록. |
 | **환자 관리** | 환자 검색 | 다중 키워드 검색, 최근 검사일 기준 정렬. |
 | **환자 관리** | 기록 조회 | 과거 검사 이력(CSV) 리스트 및 선택 조회. |
-| **검사 (Test)** | 검사 제어 | 시리얼 통신을 통해 열 자극기 제어 (온도 설정, 시작/중지). |
+| **검사 (Test)** | 검사 제어 | 시리얼 통신을 통해 팰티어 PID 제어 (온도 설정, 시작/중지). |
 | **검사 (Test)** | 설문/평가 | QST, VAS, PDS, NPS, PDQ, MPQ 등 다양한 통증 평가 도구 제공. |
-| **시스템 관리** | 백업/복원 | 데이터 및 설정을 암호화된 Tarball로 백업 및 복원. |
+| **시스템 관리** | 백업/복원 | 데이터 및 설정을 암호화된 파일로 백업 및 복원. |
 | **시스템 관리** | 로그 뷰어 | 암호화된 로그 파일을 복호화하여 웹 UI에서 열람. |
 | **시스템 관리** | 상태 모니터링 | 저장 공간 부족 경고, USB 무결성 감시, 바이러스 스캔(ClamAV). |
 
